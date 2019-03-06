@@ -3,7 +3,7 @@ package no.experisacademy.jpa.jpa;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "character")
+@Table(name = "characters")
 public class character {
 
     @Id

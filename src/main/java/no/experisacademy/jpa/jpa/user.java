@@ -1,10 +1,8 @@
 package no.experisacademy.jpa.jpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -23,6 +21,17 @@ public class user implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @OneToMany
+    @JoinColumn(name = "id")
+    private List<character> characters;
+
+    public List<character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(List<character> characters) {
+        this.characters = characters;
+    }
 
     public user() {
     }
