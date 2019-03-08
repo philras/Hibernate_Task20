@@ -5,8 +5,9 @@
     <persistence-unit name="mamps" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>no.experisacademy.jpa.jpa.user</class>
-        <class>no.experisacademy.jpa.jpa.character</class>
+        <class>no.experisacademy.jpa.user</class>
+        <class>no.experisacademy.jpa.character</class>
+        <class>no.experisacademy.jpa.characterClass</class>
 
         <properties>
             <property

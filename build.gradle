@@ -19,4 +19,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.5.RELEASE'
+
 }
