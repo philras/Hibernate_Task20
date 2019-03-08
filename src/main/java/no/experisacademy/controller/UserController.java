@@ -14,12 +14,7 @@ import static no.experisacademy.Application.getUsers;
 @RestController
 public class UserController {
 
-    @GetMapping("/users")
-    public List<user> getAllUsers(){
-        return getUsers();
-    }
-
-    @GetMapping("/test")
+    @GetMapping("/user")
     public List<user> getAlusers(){
         List<user> usersList = null;
 
@@ -48,7 +43,7 @@ public class UserController {
         return usersList;
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/user/{id}")
     public user getUserById(@PathVariable int id){
         user returnUser = null;
         for (user user : getUsers()) {

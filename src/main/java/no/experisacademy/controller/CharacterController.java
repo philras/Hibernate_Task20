@@ -14,12 +14,12 @@ import static no.experisacademy.Application.getCharacters;
 @RestController
 public class CharacterController {
 
-    @GetMapping("/characters")
+    @GetMapping("/character")
     public List<character> getAllCharacters(){
         return getCharacters();
     }
 
-    @GetMapping("/characters/{id}")
+    @GetMapping("/character/{id}")
     public character getCharacterById(@PathVariable int id){
         character returnCharacter = null;
         for (character character : getCharacters()) {

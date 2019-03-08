@@ -19,9 +19,9 @@ public class Application {
 
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("mamps");
 
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-
     }
 
     public static List<user> getUsers(){
