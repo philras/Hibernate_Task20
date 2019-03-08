@@ -83,7 +83,7 @@ public class Insert {
             c.setUserId(userId);
             c.setName(name);
             c.setLevel(level);
-            c.setClassID(classId);
+            c.setFKclassID(classId);
 
             manager.persist(c);
 

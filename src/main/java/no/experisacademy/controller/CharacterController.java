@@ -1,25 +1,28 @@
 package no.experisacademy.controller;
 
-import no.experisacademy.Application;
 import no.experisacademy.jpa.character;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.util.List;
+
+import static no.experisacademy.Application.getCharacters;
 
 @RestController
 public class CharacterController {
 
     @GetMapping("/characters")
     public List<character> getAllCharacters(){
-        return Application.getCharacters();
+        return getCharacters();
     }
 
     @GetMapping("/characters/{id}")
     public character getCharacterById(@PathVariable int id){
         character returnCharacter = null;
-        for (character character : Application.getCharacters()) {
+        for (character character : getCharacters()) {
             if (character.getId()==(id)) {
                 returnCharacter = character;
             }
@@ -27,5 +30,33 @@ public class CharacterController {
 
         return  returnCharacter;
     }
+
+    @PostMapping("/character")
+    public character addCharacter(@RequestBody character character){
+
+        EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("mamps");
+        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityTransaction transaction = null;
+
+        try{
+            transaction = manager.getTransaction();
+            transaction.begin();
+
+            manager.persist(character);
+
+            transaction.commit();
+        }catch (Exception e){
+            if(transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        finally {
+            manager.close();
+        }
+
+        return character;
+    }
+
 
 }

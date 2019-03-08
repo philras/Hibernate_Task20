@@ -20,20 +20,6 @@ public class Application {
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("mamps");
 
     public static void main(String[] args) {
-        /*addUser("street_gangtzah93", "street_gangztah93@hotmail.com", "thisIsAmerica");
-        addUser("persian_kittyGirlxx", "persiaforevah98@gmail.com", "apexLover123");
-        addUser("JujuSmoker", "amster_lover@hotmail.com", "largeBong");
-        addUser("Tequila_God", "tequila_shot@hotmail.com", "vodkaTequilaRumYes");
-        addUser("Masterbaiter69", "master_of_baits@gmail.com", "69xxx69");*/
-
-        /*for(user u : getUsers()){
-            System.out.printf("|%3s|%28s|%30s|%25s|\n", u.getId(), u.getUser_name(), u.getEmail(), u.getPassword());
-        }*/
-
-        //System.out.println(getUsers().get(1).getCharacters());
-
-        //Insert.addClass("Warrior", "Charge", "Taunt", "Berserker Rage");
-        //Insert.addCharacter(1, "Warlord_Mafia", 4, 1);
         SpringApplication.run(Application.class, args);
 
     }

@@ -21,8 +21,8 @@ public class user implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId", insertable = false, updatable = false)
     private List<character> characters;
 
     public List<character> getCharacters() {
@@ -40,9 +40,6 @@ public class user implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUserName() {
         return userName;

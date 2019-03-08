@@ -19,11 +19,11 @@ public class character {
     @Column(name = "Level")
     private int level;
 
-    @Column(name = "ClassID")
-    private int classID;
+    @Column(name = "FKclassID")
+    private int FKid;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "classID")
+    @OneToOne
+    @JoinColumn(name = "FKclassID", insertable = false, updatable = false)
     private characterClass characterClass;
 
     public no.experisacademy.jpa.characterClass getCharacterClass() {
@@ -69,11 +69,11 @@ public class character {
         this.level = level;
     }
 
-    public int getClassID() {
-        return classID;
+    public int getFKclassID() {
+        return FKid;
     }
 
-    public void setClassID(int classID) {
-        this.classID = classID;
+    public void setFKclassID(int FKclassID) {
+        this.FKid = FKclassID;
     }
 }

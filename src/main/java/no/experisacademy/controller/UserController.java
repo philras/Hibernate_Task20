@@ -1,10 +1,12 @@
 package no.experisacademy.controller;
 
 import no.experisacademy.jpa.user;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.util.List;
 
 import static no.experisacademy.Application.getUsers;
@@ -17,6 +19,35 @@ public class UserController {
         return getUsers();
     }
 
+    @GetMapping("/test")
+    public List<user> getAlusers(){
+        List<user> usersList = null;
+
+        EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("mamps");
+        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityTransaction transaction = null;
+
+        try {
+            transaction = manager.getTransaction();
+            transaction.begin();
+
+            usersList = manager.createQuery("SELECT userName from user s ").getResultList();
+
+            transaction.commit();
+
+        }catch (Exception e){
+            if(transaction != null){
+                transaction.rollback();
+            }
+
+            e.printStackTrace();
+        }finally {
+            manager.close();
+        }
+
+        return usersList;
+    }
+
     @GetMapping("/users/{id}")
     public user getUserById(@PathVariable int id){
         user returnUser = null;
@@ -27,5 +58,32 @@ public class UserController {
         }
 
         return  returnUser;
+    }
+
+    @PostMapping("/user")
+    public user addUser(@RequestBody user user){
+
+        EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("mamps");
+        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityTransaction transaction = null;
+
+        try{
+            transaction = manager.getTransaction();
+            transaction.begin();
+
+            manager.persist(user);
+
+            transaction.commit();
+        }catch (Exception e){
+            if(transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        finally {
+            manager.close();
+        }
+
+        return user;
     }
 }
